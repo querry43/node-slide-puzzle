@@ -1,10 +1,17 @@
 import React from 'react'
-import './Space.css'
+import styled from 'styled-components'
 
-export default class Space extends React.Component {
+class Space extends React.Component {
   render() {
     return (
-      <div class="space">{this.props.children}</div>
+      <div className={this.props.className}>{this.props.children}</div>
     )
   }
 }
+
+export default styled(Space)`
+  width: ${(props) => props.tileWidth + 'px'};
+  height: ${(props) => props.tileHeight + 'px'};
+  border: solid purple;
+  display: inline-flex;
+`

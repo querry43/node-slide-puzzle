@@ -1,24 +1,40 @@
 import React from 'react'
 import './App.css'
 import Board from './Board'
-import Space from './Space'
-import Tile from './Tile'
+import queryString from 'query-string'
+
 
 export default class App extends React.Component {
   render() {
+    const query = queryString.parse(
+      global.location.search,
+      {arrayFormat: 'comma'}
+    );
+
+    global.console.log(query)
+
+    const tiles = query.tiles || [
+      1, 2, 3,
+      4, 5, 6,
+      7, 8, 0,
+    ]
+
+    const boardTilesWide = query.width || 3
+    const boardTilesTall = query.height || 3
+
+    const tileWidth = 100
+    const tileHeight = 100
+    const tileMargin = 6 // this is the border width
+
     return (
       <div className="App">
-        <Board>
-          <Tile>1</Tile>
-          <Tile>2</Tile>
-          <Tile>3</Tile>
-          <Tile>4</Tile>
-          <Tile>5</Tile>
-          <Tile>6</Tile>
-          <Tile>7</Tile>
-          <Tile>8</Tile>
-          <Space>0</Space>
-        </Board>
+        <Board
+          boardTilesWide={boardTilesWide}
+          boardTilesTall={boardTilesTall}
+          tileHeight={tileHeight}
+          tileWidth={tileWidth}
+          tileMargin={tileMargin}
+          tiles={tiles} />
       </div>
     )
   }

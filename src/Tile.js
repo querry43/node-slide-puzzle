@@ -1,10 +1,17 @@
 import React from 'react'
-import './Tile.css'
+import styled from 'styled-components'
 
-export default class Tile extends React.Component {
+class Tile extends React.Component {
   render() {
     return (
-      <div class="tile">{this.props.children}</div>
+      <div className={this.props.className}>{this.props.children}</div>
     )
   }
 }
+
+export default styled(Tile)`
+  width: ${(props) => props.tileWidth + 'px'};
+  height: ${(props) => props.tileHeight + 'px'};
+  border: solid blue;
+  display: inline-flex;
+`
