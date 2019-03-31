@@ -1,23 +1,30 @@
 import React from 'react'
-import Space from './Space'
-import Tile from './Tile'
-import styled from 'styled-components'
+import TileContainer from './TileContainer'
+import './Board.css'
 
-class Board extends React.Component {
+export default class Board extends React.Component {
   render() {
-    const tiles = this.props.tiles.map((i) => {
-      return i > 0
-        ? <Tile key={i} tileWidth={this.props.tileWidth} tileHeight={this.props.tileHeight}>{i}</Tile>
-        : <Space key={i} tileWidth={this.props.tileWidth} tileHeight={this.props.tileHeight}>{i}</Space>
-    })
     return (
-      <div className={this.props.className}>{tiles}</div>
+      <div className="board">
+        <h1>
+          Slidey Widey
+        </h1>
+        <TileContainer
+          boardTilesWide={this.props.boardTilesWide}
+          boardTilesTall={this.props.boardTilesTall}
+          tileHeight={this.props.tileHeight}
+          tileWidth={this.props.tileWidth}
+          tileMargin={this.props.tileMargin}
+          tiles={this.props.tiles} />
+        <h2>win? {this.isWin() ? 'Yes' : 'No'}</h2>
+      </div>
     )
   }
-}
 
-export default styled(Board)`
-  width: ${(props) => props.boardTilesWide * (props.tileWidth + props.tileMargin) + 'px'};
-  height: ${(props) => props.boardTilesTall * (props.tileHeight + props.tileMargin) + 'px'};
-  border: solid green;
-`
+  isWin() {
+    const numTiles = this.props.boardTilesTall * this.props.boardTilesWide
+    const sequentialTiles = Array(numTiles).fill().map((_, i) => i+1)
+    const winTiles = sequentialTiles.map(tile => tile === numTiles ? 0 : tile)
+    return JSON.stringify(this.props.tiles.map(i => parseInt(i, 10))) === JSON.stringify(winTiles)
+  }
+}

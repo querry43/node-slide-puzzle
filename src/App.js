@@ -11,8 +11,6 @@ export default class App extends React.Component {
       {arrayFormat: 'comma'}
     );
 
-    global.console.log(query)
-
     const tiles = query.tiles || [
       1, 2, 3,
       4, 5, 6,

@@ -1,0 +1,6 @@
+.board {
+    display: inline-block;
+    background-color: #ffe082;
+    padding: 20px;
+    margin-top: 20px;
+}

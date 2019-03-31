@@ -66,3 +66,28 @@ npm install --save query-string
 This module lets you pull out the query string components.  You can then use a
 URL like the following to specify board properties:
     http://localhost:3000/?width=4&height=3&tiles=1,2,3,4,5,6,7,8,9,10,11,0
+
+Moar logic
+----------
+Lets add some additional components, such as a win indicator (windicator) and a
+some visual components.  The board is a good place to put this but there is a
+problem.  The board is already a container for tiles.
+
+It is a good pattern to separate containers and logic into different
+components.  This keeps components small and re-usable.  It also makes styled
+components a bit easier to use.  Try either adding logic into App.js or adding
+another container between Board and Tile.
+
+Once it is all styled up, try adding a method that evaluates the win condition.
+A win is fairly easy to detect because it has:
+
+1. A sequence of numbers starting at 1 and ending at the number of tiles
+2. The last tile is 0
+
+You can display the win status on the board itself.
+
+Testing
+-------
+Reasonable tests always make development faster and provide a sense of
+accomplishment.  You might find that the win condition doesn't work with a
+query string.
